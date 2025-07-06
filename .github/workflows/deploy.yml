@@ -40,7 +40,7 @@ jobs:
     
     - name: Validate Beta form
       run: |
-        if grep -q "profile.*solution.*challenge" html/index.html; then
+        if grep -q 'id="profile"' html/index.html && grep -q 'id="solution"' html/index.html && grep -q 'id="challenge"' html/index.html; then
           echo "✅ Beta form fields present"
         else
           echo "❌ Beta form incomplete"

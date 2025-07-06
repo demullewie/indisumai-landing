@@ -672,7 +672,6 @@
 
         .footer-bottom {
             border-top: 1px solid rgba(255, 255, 255, 0.1);
-            padding-top: 2rem;
             text-align: center;
             color: rgba(255, 255, 255, 0.6);
         }
@@ -686,14 +685,6 @@
             margin-top: 2rem;
             text-align: center;
         }
-
-        /* Animations */
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
                 opacity: 1;
                 transform: translateY(0);
             }
@@ -870,4 +861,391 @@
                 <div class="feature-card scroll-animate">
                     <div class="feature-icon">💡</div>
                     <h3>Apprentissage Continu</h3>
+                    <p>L'IA s'améliore avec vos pratiques et s'adapte à votre style de coaching ou de management pour des recommandations toujours plus précises.</p>
+                </div>
+                <div class="feature-card scroll-animate">
+                    <div class="feature-icon">🤝</div>
+                    <h3>Support Expert Dédié</h3>
+                    <p>Accompagnement personnalisé par notre équipe d'experts en IA et coaching pour maximiser l'adoption et les résultats.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Target Audience Section -->
+    <section class="target-audience" id="public">
+        <div class="container">
+            <div class="section-header scroll-animate">
+                <h2>Conçu pour les Professionnels Exigeants</h2>
+                <p>INDISUMai répond aux besoins spécifiques des acteurs clés de l'accompagnement et de la gestion d'entreprise moderne.</p>
+            </div>
+            <div class="audience-grid">
+                <div class="audience-card scroll-animate">
+                    <div class="audience-icon">👥</div>
+                    <h3>Coaches Professionnels</h3>
+                    <p>Business coaches, life coaches, coaches d'équipe qui veulent enrichir leurs sessions avec des insights IA et automatiser le suivi de leurs clients.</p>
+                </div>
+                <div class="audience-card scroll-animate">
+                    <div class="audience-icon">🚀</div>
+                    <h3>Startups & Scale-ups</h3>
+                    <p>Équipes fondatrices qui ont besoin d'optimiser rapidement leurs processus opérationnels sans ressources RH dédiées.</p>
+                </div>
+                <div class="audience-card scroll-animate">
+                    <div class="audience-icon">⚙️</div>
+                    <h3>COO de PME</h3>
+                    <p>Directeurs opérationnels qui cherchent à digitaliser et automatiser la gestion quotidienne pour se concentrer sur la stratégie.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat-item scroll-animate">
+                    <h3>85%</h3>
+                    <p>Gain de temps moyen</p>
+                </div>
+                <div class="stat-item scroll-animate">
+                    <h3>3x</h3>
+                    <p>Amélioration des résultats clients</p>
+                </div>
+                <div class="stat-item scroll-animate">
+                    <h3>24/7</h3>
+                    <p>Assistance IA disponible</p>
+                </div>
+                <div class="stat-item scroll-animate">
+                    <h3>100%</h3>
+                    <p>Conforme RGPD</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section" id="contact">
+        <div class="container">
+            <div class="cta-content scroll-animate">
+                <h2>Rejoignez l'Avenir du Coaching & Management</h2>
+                <p>Soyez parmi les premiers à expérimenter nos outils IA révolutionnaires. Accès Beta gratuit avec accompagnement personnalisé.</p>
                 
+                <form class="contact-form">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="firstName">Prénom *</label>
+                            <input type="text" id="firstName" name="firstName" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="lastName">Nom *</label>
+                            <input type="text" id="lastName" name="lastName" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="email">Email professionnel *</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Téléphone</label>
+                            <input type="tel" id="phone" name="phone">
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="company">Entreprise / Cabinet</label>
+                        <input type="text" id="company" name="company" placeholder="Nom de votre structure">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="profile">Votre profil *</label>
+                        <select id="profile" name="profile" required>
+                            <option value="">Sélectionnez votre profil</option>
+                            <option value="coach-business">Coach Business</option>
+                            <option value="coach-life">Life Coach</option>
+                            <option value="coach-equipe">Coach d'équipe</option>
+                            <option value="founder-startup">Founder / CEO Startup</option>
+                            <option value="coo-pme">COO / Directeur Opérationnel PME</option>
+                            <option value="consultant">Consultant</option>
+                            <option value="autre">Autre</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="solution">Solution qui vous intéresse *</label>
+                        <select id="solution" name="solution" required>
+                            <option value="">Choisissez votre priorité</option>
+                            <option value="coaching">IA pour Coaching (Assistant intelligent)</option>
+                            <option value="management">IA pour Office Management (Automatisation)</option>
+                            <option value="both">Les deux solutions</option>
+                            <option value="unsure">Pas encore sûr - Conseil personnalisé</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="challenge">Principal défi actuel *</label>
+                        <textarea id="challenge" name="challenge" rows="4" placeholder="Décrivez votre principal défi en quelques mots (suivi clients, gestion d'équipe, automatisation des processus, etc.)" required></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="timeline">Horizon de mise en œuvre</label>
+                        <select id="timeline" name="timeline">
+                            <option value="">Votre timing</option>
+                            <option value="immediate">Immédiat (< 1 mois)</option>
+                            <option value="short">Court terme (1-3 mois)</option>
+                            <option value="medium">Moyen terme (3-6 mois)</option>
+                            <option value="long">Long terme (> 6 mois)</option>
+                        </select>
+                    </div>
+                    
+                    <button type="submit" class="btn-submit">
+                        🚀 Rejoindre la Beta INDISUMai
+                    </button>
+                    
+                    <div class="beta-notice">
+                        <strong>Accès Beta Gratuit</strong> - Accompagnement personnalisé inclus • Aucun engagement • Confidentialité garantie
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>INDISUMai</h4>
+                    <p>Intelligence Artificielle dédiée au coaching professionnel et à l'office management. Révolutionnez votre pratique avec nos outils IA spécialisés.</p>
+                    <p style="margin-top: 1.5rem;"><strong>🚀 En développement - Beta 2025</strong></p>
+                </div>
+                <div class="footer-section">
+                    <h4>Solutions IA</h4>
+                    <a href="#solutions">Assistant Coaching IA</a>
+                    <a href="#solutions">Office Management IA</a>
+                    <a href="#fonctionnalites">Fonctionnalités</a>
+                    <a href="#public">Qui peut en bénéficier</a>
+                </div>
+                <div class="footer-section">
+                    <h4>Ressources</h4>
+                    <a href="#contact">Accès Beta</a>
+                    <a href="#contact">Documentation</a>
+                    <a href="#contact">Support & Formation</a>
+                    <a href="#contact">Cas d'usage</a>
+                </div>
+                <div class="footer-section">
+                    <h4>Contact</h4>
+                    <p>📧 beta@indisumai.com</p>
+                    <p>🔗 LinkedIn : INDISUMai</p>
+                    <p>🌍 Développé en France</p>
+                    <p>🔒 Hébergement EU - Conforme RGPD</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 INDISUMai. Tous droits réservés. | <a href="#contact">Mentions légales</a> | <a href="#contact">Politique de confidentialité</a> | <a href="#contact">Conditions d'utilisation Beta</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Navigation scroll effect
+        window.addEventListener('scroll', () => {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 100) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.scroll-animate').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Mobile menu toggle
+        document.querySelector('.mobile-menu-toggle').addEventListener('click', function() {
+            const navLinks = document.querySelector('.nav-links');
+            const isVisible = navLinks.style.display === 'flex';
+            navLinks.style.display = isVisible ? 'none' : 'flex';
+            if (!isVisible) {
+                navLinks.style.flexDirection = 'column';
+                navLinks.style.position = 'absolute';
+                navLinks.style.top = '100%';
+                navLinks.style.left = '0';
+                navLinks.style.right = '0';
+                navLinks.style.background = 'white';
+                navLinks.style.padding = '1rem';
+                navLinks.style.boxShadow = 'var(--shadow-lg)';
+            }
+        });
+
+        // Enhanced form submission with validation
+        document.querySelector('.contact-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const formData = new FormData(this);
+            const data = Object.fromEntries(formData);
+            
+            // Enhanced validation
+            if (!data.firstName || !data.lastName || !data.email || !data.profile || !data.solution || !data.challenge) {
+                alert('Veuillez remplir tous les champs obligatoires (marqués *).');
+                return;
+            }
+            
+            // Email validation
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(data.email)) {
+                alert('Veuillez saisir une adresse email valide.');
+                return;
+            }
+            
+            const submitBtn = this.querySelector('.btn-submit');
+            const originalText = submitBtn.textContent;
+            
+            submitBtn.textContent = '🚀 Traitement en cours...';
+            submitBtn.disabled = true;
+            
+            // Simulate form submission with enhanced feedback
+            setTimeout(() => {
+                alert(`Merci ${data.firstName} ! 🎉\n\nVotre demande d'accès Beta a été reçue.\nNotre équipe vous contactera sous 24h pour :\n\n✅ Valider votre profil\n✅ Planifier une démo personnalisée\n✅ Configurer votre accès Beta\n\nVérifiez vos emails (et spams) !`);
+                this.reset();
+                submitBtn.textContent = originalText;
+                submitBtn.disabled = false;
+                
+                // Scroll to top with success message
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }, 2000);
+        });
+
+        // Dynamic form behavior based on selections
+        document.getElementById('profile').addEventListener('change', function() {
+            const solution = document.getElementById('solution');
+            const profile = this.value;
+            
+            // Pre-select solution based on profile
+            if (profile.includes('coach')) {
+                solution.value = 'coaching';
+            } else if (profile.includes('coo') || profile.includes('founder')) {
+                solution.value = 'management';
+            }
+        });
+
+        // Counter animation for stats
+        function animateCounters() {
+            const counters = document.querySelectorAll('.stat-item h3');
+            counters.forEach(counter => {
+                const target = counter.textContent;
+                if (target.includes('%')) {
+                    const number = parseInt(target.replace('%', ''));
+                    let current = 0;
+                    const increment = number / 50;
+                    const timer = setInterval(() => {
+                        current += increment;
+                        if (current >= number) {
+                            current = number;
+                            clearInterval(timer);
+                        }
+                        counter.textContent = Math.floor(current) + '%';
+                    }, 40);
+                } else if (target.includes('x')) {
+                    // Handle multiplier
+                    const number = parseInt(target.replace('x', ''));
+                    let current = 1;
+                    const increment = (number - 1) / 20;
+                    const timer = setInterval(() => {
+                        current += increment;
+                        if (current >= number) {
+                            current = number;
+                            clearInterval(timer);
+                        }
+                        counter.textContent = Math.floor(current) + 'x';
+                    }, 50);
+                }
+            });
+        }
+
+        // Trigger counter animation when stats section is visible
+        const statsObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    animateCounters();
+                    statsObserver.unobserve(entry.target);
+                }
+            });
+        });
+
+        const statsSection = document.querySelector('.stats');
+        if (statsSection) {
+            statsObserver.observe(statsSection);
+        }
+
+        // Add hover effects to solution cards
+        document.querySelectorAll('.solution-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-12px) scale(1.02)';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(-8px) scale(1)';
+            });
+        });
+
+        // Progressive disclosure for advanced features
+        let detailsVisible = false;
+        function toggleDetails() {
+            const features = document.querySelectorAll('.solution-features li');
+            features.forEach((feature, index) => {
+                if (index > 2) {
+                    feature.style.display = detailsVisible ? 'none' : 'flex';
+                }
+            });
+            detailsVisible = !detailsVisible;
+        }
+
+        // Beta access tracking (in real app, send to analytics)
+        document.querySelectorAll('a[href="#contact"]').forEach(link => {
+            link.addEventListener('click', () => {
+                console.log('Beta access interest:', new Date().toISOString());
+                // gtag('event', 'beta_interest', { event_category: 'engagement' });
+            });
+        });
+    </script>
+</body>
+</html>
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+
