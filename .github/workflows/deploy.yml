@@ -1,0 +1,166 @@
+name: Deploy INDISUMai Landing
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+env:
+  DOMAIN_NAME: indisumai.com
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    name: Tests & Validation
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+    
+    - name: Validate Docker Compose
+      run: |
+        docker compose config
+        echo "✅ Docker Compose configuration valid"
+    
+    - name: Validate HTML
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y tidy
+        tidy -q -e html/index.html || echo "⚠️ HTML validation warnings (non-blocking)"
+    
+    - name: Check SSL configuration
+      run: |
+        if grep -q "indisumai.com" nginx/sites-available/default.conf; then
+          echo "✅ SSL configuration found for indisumai.com"
+        else
+          echo "❌ SSL configuration missing"
+          exit 1
+        fi
+    
+    - name: Validate Beta form
+      run: |
+        if grep -q "profile.*solution.*challenge" html/index.html; then
+          echo "✅ Beta form fields present"
+        else
+          echo "❌ Beta form incomplete"
+          exit 1
+        fi
+
+  security-scan:
+    runs-on: ubuntu-latest
+    name: Security Scan
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+    
+    - name: Scan for secrets
+      run: |
+        # Check for potential secrets in code
+        if grep -r "password\|secret\|key" --exclude-dir=.git .; then
+          echo "⚠️ Potential secrets found - review manually"
+        else
+          echo "✅ No obvious secrets in code"
+        fi
+    
+    - name: Check security headers
+      run: |
+        if grep -q "Strict-Transport-Security\|X-Frame-Options\|X-Content-Type-Options" nginx/sites-available/default.conf; then
+          echo "✅ Security headers configured"
+        else
+          echo "❌ Security headers missing"
+          exit 1
+        fi
+
+  deploy:
+    needs: [test, security-scan]
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main'
+    name: Deploy to Production
+    
+    steps:
+    - name: Deploy to VPS
+      uses: appleboy/ssh-action@v1.0.0
+      with:
+        host: ${{ secrets.VPS_HOST }}
+        username: ${{ secrets.VPS_USERNAME }}
+        key: ${{ secrets.VPS_SSH_KEY }}
+        script: |
+          cd /var/www/indisumai-landing
+          
+          # Backup current version
+          timestamp=$(date +%Y%m%d_%H%M%S)
+          tar -czf "/var/backups/indisumai-backup-$timestamp.tar.gz" html/ nginx/ || true
+          
+          # Pull latest changes
+          git pull origin main
+          
+          # Update containers
+          docker compose down
+          docker compose pull
+          docker compose up -d
+          
+          # Wait and verify
+          sleep 15
+          if docker compose ps | grep -q "Up.*nginx"; then
+            echo "✅ Deployment successful"
+            
+            # Test SSL certificate
+            curl -I https://indisumai.com || echo "⚠️ SSL check failed"
+            
+            # Clean old backups (keep last 5)
+            ls -t /var/backups/indisumai-backup-*.tar.gz | tail -n +6 | xargs rm -f || true
+            
+          else
+            echo "❌ Deployment failed"
+            exit 1
+          fi
+
+  notify:
+    needs: [deploy]
+    runs-on: ubuntu-latest
+    if: always()
+    name: Notifications
+    
+    steps:
+    - name: Notify deployment status
+      run: |
+        if [ "${{ needs.deploy.result }}" == "success" ]; then
+          echo "✅ INDISUMai landing page deployed successfully"
+          # Here you could add Slack/Discord/Email notifications
+        else
+          echo "❌ INDISUMai deployment failed"
+          # Send failure notifications
+        fi
+
+  performance-test:
+    needs: [deploy]
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main'
+    name: Performance Testing
+    
+    steps:
+    - name: PageSpeed Test
+      run: |
+        # Basic performance check
+        echo "🚀 Running performance tests..."
+        
+        # Check response time
+        response_time=$(curl -o /dev/null -s -w '%{time_total}' https://indisumai.com)
+        echo "Response time: ${response_time}s"
+        
+        if (( $(echo "$response_time < 3.0" | bc -l) )); then
+          echo "✅ Response time acceptable (< 3s)"
+        else
+          echo "⚠️ Response time slow (> 3s)"
+        fi
+        
+        # Check if site is up
+        status_code=$(curl -o /dev/null -s -w '%{http_code}' https://indisumai.com)
+        if [ "$status_code" == "200" ]; then
+          echo "✅ Site accessible (HTTP 200)"
+        else
+          echo "❌ Site issue (HTTP $status_code)"
+          exit 1
+        fi
