@@ -76,7 +76,7 @@ jobs:
   deploy:
     needs: [test, security-scan]
     runs-on: ubuntu-latest
-    if: github.ref == 'refs/heads/main'
+    if: false   # Désactivé temporairement
     name: Deploy to Production
     
     steps:
