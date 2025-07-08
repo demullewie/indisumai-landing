@@ -672,6 +672,7 @@
 
         .footer-bottom {
             border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 2rem;
             text-align: center;
             color: rgba(255, 255, 255, 0.6);
         }
@@ -685,6 +686,14 @@
             margin-top: 2rem;
             text-align: center;
         }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
                 opacity: 1;
                 transform: translateY(0);
             }
@@ -968,11 +977,7 @@
                             <option value="founder-startup">Founder / CEO Startup</option>
                             <option value="coo-pme">COO / Directeur Opérationnel PME</option>
                             <option value="consultant">Consultant</option>
-                            <option value="autre">Autre</option>
-                        </select>
-                    </div>
-                    
-                    <div class="form-group">
+                            <option vgroup">
                         <label for="solution">Solution qui vous intéresse *</label>
                         <select id="solution" name="solution" required>
                             <option value="">Choisissez votre priorité</option>
@@ -1241,11 +1246,3 @@
     </script>
 </body>
 </html>
-        /* Animations */
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-

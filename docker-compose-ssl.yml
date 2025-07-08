@@ -3,7 +3,7 @@ version: '3.8'
 services:
   nginx:
     image: nginx:alpine
-    container_name: indisumai-nginx
+    container_name: indisumai-nginx-ssl
     restart: unless-stopped
     ports:
       - "80:80"
@@ -12,17 +12,13 @@ services:
       - ./html:/usr/share/nginx/html:ro
       - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
       - ./nginx/sites-available:/etc/nginx/conf.d:ro
-      - certbot-etc:/etc/letsencrypt
-      - certbot-var:/var/lib/letsencrypt
-      - ./ssl:/etc/nginx/ssl:ro
-    depends_on:
-      - certbot
+      - certbot-etc:/etc/letsencrypt:ro
     networks:
       - indisumai-network
 
-certbot:
+  certbot:
     image: certbot/certbot:latest
-    container_name: indisumai-certbot
+    container_name: indisumai-certbot-ssl
     volumes:
       - certbot-etc:/etc/letsencrypt
       - certbot-var:/var/lib/letsencrypt
